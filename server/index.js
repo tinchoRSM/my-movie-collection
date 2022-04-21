@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 import homeRoutes from "./routes/homeRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
+import moviesRoutes from "./routes/moviesRoutes.js";
 
 const port = process.env.PORT || 5000;
 const urlDataBase = process.env.CONNECTION_URL || null;
@@ -14,7 +15,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use('/', homeRoutes);
-app.use('/users',usersRoutes)
+app.use('/users',usersRoutes);
+app.use('/movies',moviesRoutes);
 
 
 mongoose.connect(urlDataBase, { useNewUrlParser: true, useUnifiedTopology: true })
