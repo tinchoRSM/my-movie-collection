@@ -9,8 +9,9 @@ export const getMovies = async (req,res) => {
         const url = `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.MOVIE_API_KEY}`
         const response = await fetch(url);
         const data = await response.json();
+        const parsedData = movieDataParser(data);
 
-        res.status(200).json(data);
+        res.status(200).json(parsedData);
     } catch (error) {
         console.log("Couldn't connet to moive api " + error.message);
         res.status(500);

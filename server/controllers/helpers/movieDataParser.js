@@ -22,8 +22,6 @@ export default function movieDataParser(data){
             post: data.results[i].poster_path
         }
 
-        console.log(newEntry);
-
         parsedData.push(newEntry);
 
     }
