@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import "../../styles/Landing.css";
 import EmptyFavorites from '../Utility/EmptyFavorites';
@@ -10,7 +11,9 @@ export default function LandingFavorites() {
 
 
   const favoritesElements = favorites.map((el)=>{
-      return <img className="landing--favorite--img" key={el.id} src={el.poster} alt="poster"/>
+      return <Link to={`/movie/${el.id}`}>
+          <img className="landing--favorite--img" key={el.id} src={el.poster} alt="poster"/>
+        </Link>
     }
   )
 

@@ -18,6 +18,9 @@ export const getMovies = async (req,res) => {
     }
 };
 
+//@desc     Get movies from other api by name
+//@route    GET /movies/:movie
+//@access   Public
 export const getMovieByName = async(req,res) => {
     try {
         const movieName = req.params.movieName;
@@ -32,3 +35,22 @@ export const getMovieByName = async(req,res) => {
         res.status(500);
     }
 }
+
+//@desc     Get movies from other api by name
+//@route    GET /movies/:movie
+//@access   Public
+export const getMovieById = async(req,res) => {
+    try {
+        const movieId = req.params.movieId;
+        const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.MOVIE_API_KEY}`;
+
+        const response = await fetch(url);
+        const data = await response.json()
+        const parsedData = data;
+        res.status(200).json(parsedData);
+    } catch (error) {
+        console.log("Couldn't connet to moive api " + error.message);
+        res.status(500);
+    }
+}
+
