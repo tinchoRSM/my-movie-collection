@@ -7,25 +7,28 @@ import MovieSearchCard from './MovieSearchCard';
 
 import "../styles/Search.css"
 import EmptySearch from './Utility/EmptySearch';
+import { setSearchInput } from '../features/search/searchSlice';
 
 export default function Search() {
 
     const {movies} = useSelector((store) => store.movies);
+    const {input} = useSelector((store) => store.search)
+
     const dispatch = useDispatch();
 
-    const [searchInput, setSearchInput] = useState("");
+
+    //const [searchInput, setSearchInput] = useState("");
     const [searchInit, setSearchInit] = useState(false);
 
     useEffect(()=>{
-        if(searchInput !== ""){
-            dispatch(getMoviesFromApi(searchInput));
-            console.log("state changed");
+        if(input !== ""){
+            dispatch(getMoviesFromApi(input));
         }
     },[searchInit]);
 
     function handleChange(event){
         const text = event.target.value;
-        setSearchInput(text);
+        dispatch(setSearchInput(text));
     }
 
     function handleClick(){

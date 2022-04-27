@@ -51,4 +51,6 @@
 .landing--favorite--img{
     height: 350px;
     width: auto;
+    margin: 5px;
+    border-radius: 20px;
 }
