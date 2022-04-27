@@ -1,0 +1,33 @@
+.search--container{
+    max-width: 1020px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.search--tittle{
+    margin: 0 auto;
+}
+
+.search--input{
+    margin: 0 auto;
+}
+
+.search--input--text{
+    height: 40px;
+}
+
+.search--input--button{
+    height: 46px;
+    margin: 0 5px;
+}
+
+.search--empty{
+    margin: 0 auto;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

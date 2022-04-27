@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     movies: [],
+    search: false,
     isLoading: true
 }
 
@@ -26,6 +27,9 @@ export const moviesSclice = createSlice({
     name: "movies",
     initialState: initialState,
     reducers: {
+        setSerch: ()=>{
+            
+        }
 
     },
     extraReducers:{

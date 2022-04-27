@@ -1,0 +1,27 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 80px;
+    background-color: azure;
+}
+
+.nav--search{
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    margin: 0 0px;;
+}
+
+.nav--title{
+    margin: 0 20px;
+}
+
+.nav--search--bar{
+    height: 40px;
+}
+
+.nav--search--button{
+    height: 46px;
+    margin: 0 5px;
+}

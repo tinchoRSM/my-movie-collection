@@ -1,0 +1,31 @@
+.landing--hero{
+    height: 500px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img//hero/hero_image.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.landing--hero--container{  
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    color: white;
+    height: 100%;
+    padding: 20px;
+}
+
+
+.landing--favorites{
+    height: 500px;
+    background-color: transparent;
+}
+
+.landing--favorites--container{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}

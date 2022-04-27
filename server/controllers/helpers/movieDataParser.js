@@ -6,6 +6,8 @@
 //     "post": "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
 // },
 
+import genres from "./genres";
+
 export default function movieDataParser(data){
 
     const parsedData = [];
@@ -19,7 +21,8 @@ export default function movieDataParser(data){
             id : data.results[i].id,
             title: data.results[i].original_title,
             summary: data.results[i].overview,
-            post: data.results[i].poster_path
+            poster: `https://image.tmdb.org/t/p/w500${data.results[i].poster_path}`,
+            year: data.results[i].release_date
         }
 
         parsedData.push(newEntry);
