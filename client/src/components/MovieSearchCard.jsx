@@ -1,15 +1,22 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
-import { addFavorites } from '../features/user/userSlice';
+import { addFavorites, removeFavorites } from '../features/user/userSlice';
 
 import '../styles/MovieSearchCard.css'
 
-export default function MovieSearchCard({id,title,summary,poster,year}) {
+export default function MovieSearchCard({id,title,summary,poster,year,genres,officialSite}) {
   
   const dispatch = useDispatch();
 
-  function handleClick(){
-    dispatch(addFavorites(id));
+  const {favorites} = useSelector((store) => store.user)
+
+  function addHandleClick(){
+    dispatch(addFavorites({id:id,poster:poster}));
+  }
+
+  function removeHandleClick(){
+    dispatch(removeFavorites(id));
   }
   
   return (
@@ -19,12 +26,28 @@ export default function MovieSearchCard({id,title,summary,poster,year}) {
         </div>
         <div className="moviecard--text">
             <h2 className="moviecard--title">{title} ({year})</h2>
+            <div className="movie--genres">
+              {genres.map(el => <span>{el} </span>)}
+            </div>
             <p className="moviecard--summary">{summary}</p>
-            <button 
-              className="moviecard--favorites"
-              onClick={handleClick}
+            <a href={officialSite}>Visit official site</a>
+            {favorites.find((el)=>el.id===id) ?
+              <button 
+              className="moviecard--favorites--remove"
+              onClick={removeHandleClick}
               >
-              Add to faborites</button>
+                Remove from favorites
+              </button> 
+              :
+              <button 
+                className="moviecard--favorites--add"
+                onClick={addHandleClick}
+              >
+                Add to favorites
+              </button>
+            }
+            
+
         </div>
     </div>
   )

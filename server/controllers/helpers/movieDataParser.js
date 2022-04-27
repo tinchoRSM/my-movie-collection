@@ -6,7 +6,7 @@
 //     "post": "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
 // },
 
-import genres from "./genres";
+import {allGenres} from "./allGenres.js";
 
 export default function movieDataParser(data){
 
@@ -22,8 +22,16 @@ export default function movieDataParser(data){
             title: data.results[i].original_title,
             summary: data.results[i].overview,
             poster: `https://image.tmdb.org/t/p/w500${data.results[i].poster_path}`,
-            year: data.results[i].release_date
+            year: data.results[i].release_date,
+            genres: data.results[i].genre_ids,
+            officialSite: `https://www.google.com/search?q=${data.results[i].original_title}`
         }
+        
+        //@desc Setting genre with text from id of genre
+        newEntry.genres = newEntry.genres.map((id) => {
+            const currentGenre = allGenres.find((el) => el.id === id);
+            return currentGenre.name;
+        })
 
         parsedData.push(newEntry);
 

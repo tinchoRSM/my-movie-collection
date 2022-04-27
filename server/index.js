@@ -1,6 +1,7 @@
 import express from "express";
 import dottenv from "dotenv/config";
 import mongoose from "mongoose";
+import cors from "cors"
 
 import homeRoutes from "./routes/homeRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
@@ -13,6 +14,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(cors())
 
 app.use('/', homeRoutes);
 app.use('/users',usersRoutes);

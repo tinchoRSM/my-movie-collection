@@ -18,14 +18,37 @@
     padding: 20px;
 }
 
+.landing--favorites--empty{
+    margin: 0 auto;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .landing--favorites{
+    
     height: 500px;
     background-color: transparent;
 }
 
 .landing--favorites--container{
+    max-width: 1020px;
     display: flex;
     height: 100%;
-    justify-content: center;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.landing--favorites--text{
+    margin: 20px auto;
+}
+
+.landing--favorites--elements{
+    height: 100%;
+}
+
+.landing--favorite--img{
+    height: 350px;
+    width: auto;
 }
