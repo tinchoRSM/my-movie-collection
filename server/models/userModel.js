@@ -9,9 +9,9 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please Enter password']
     },
-    favorites: [{movieId: Number}],
-    ratings: [{movieId: Number, rating: Number}],
-    notes: [{movieId: Number, body: String}]
+    favorites: [{id: Number, poster: String}],
+    ratings: [{id: Number, rating: Number}],
+    notes: [{id: Number, body: String}]
 });
 
 const User = mongoose.model('User',userSchema);

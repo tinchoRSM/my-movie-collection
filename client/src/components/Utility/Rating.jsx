@@ -14,6 +14,8 @@ export default function Rating(props) {
     const {ratings} = useSelector((store) => store.user);
     const dispatch = useDispatch()
 
+    console.log(useSelector((store) => store.user))
+
     const userRating = ratings.find(el => el.id === props.movieId);
 
     const [rating, setRating] = useState(0);

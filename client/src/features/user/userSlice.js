@@ -1,12 +1,30 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+
 
 const initialState = {
     username: "templateUser",
     password: "templatePassowrd",
     favorites: [],
     notes: [],
-    ratings: [{id: "157336", rating: 5}],
+    ratings: [],
 }
+
+const apiUurl = "http://localhost:8080/users";
+
+export const getUserDataFromApi = createAsyncThunk(
+    'user/getUserDataFromApi',async () =>{
+        try {
+            const response = await fetch(apiUurl);
+            const data = await response.json();
+            return data;
+
+        } catch (error) {
+            console.log(error)
+        }
+    })
+
+
 
 const userSlice = createSlice({
     name: "user",
@@ -38,6 +56,23 @@ const userSlice = createSlice({
             state.ratings = [rating, ...state.ratings]
         }
 
+    },
+    extraReducers:{
+        [getUserDataFromApi.pending]: (state) =>{
+            console.log("Connecting to server!")
+        },
+        [getUserDataFromApi.fulfilled]: (state,action) =>{
+            console.log("Data recieved form the server!");
+            state.username = action.payload.username;
+            state.password = action.payload.password;
+            state.favorites = action.payload.favorites;
+            state.ratings = action.payload.ratings;
+            state.notes = action.payload.notes;
+
+        },
+        [getUserDataFromApi.rejected]: (state,action) =>{
+            console.log("Counldn't connect to the server!")
+        }
     }
 })
 

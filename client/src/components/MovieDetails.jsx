@@ -26,8 +26,6 @@ export default function MovieDetails() {
                 setLoading(false);
             }
             );
-
-
     }, [])
 
     const dispatch = useDispatch();
@@ -91,7 +89,7 @@ export default function MovieDetails() {
             </div>
             }
             <div className="movie--rating">
-                <Rating movieId={moiveId}/>
+                <Rating movieId={movieData.id}/>
             </div>
         </div>
     )
