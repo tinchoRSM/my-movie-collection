@@ -17,6 +17,7 @@ export default function LandingFavorites() {
         </Link>
     }
   )
+  
 
   return (
     <div className="landing--favorites"> 
