@@ -1,3 +1,4 @@
+import { nanoid } from '@reduxjs/toolkit';
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -11,8 +12,8 @@ export default function LandingFavorites() {
 
 
   const favoritesElements = favorites.map((el)=>{
-      return <Link to={`/movie/${el.id}`}>
-          <img className="landing--favorite--img" key={el.id} src={el.poster} alt="poster"/>
+      return <Link key={nanoid()} to={`/movie/${el.id}`}>
+          <img className="landing--favorite--img" src={el.poster} alt="poster"/>
         </Link>
     }
   )

@@ -5,6 +5,7 @@ import { addFavorites, removeFavorites } from '../features/user/userSlice';
 import { Link } from 'react-router-dom';
 
 import '../styles/MovieSearchCard.css'
+import { nanoid } from '@reduxjs/toolkit';
 
 export default function MovieSearchCard({id,title,summary,poster,year,genres,officialSite}) {
   
@@ -28,27 +29,31 @@ export default function MovieSearchCard({id,title,summary,poster,year,genres,off
           </Link>
         </div>
         <div className="moviecard--text">
-            <h2 className="moviecard--title">{title} ({year})</h2>
+            <h2 className="moviecard--title">
+              <Link style={{textDecoration: "none", color: "black"}} to={`/movie/${id}`}>{title} ({year})</Link>
+            </h2>
             <div className="movie--genres">
-              {genres.map(el => <span>{el} </span>)}
+              {genres.map(el => <span key={nanoid()}>{el} </span>)}
             </div>
             <p className="moviecard--summary">{summary}</p>
             <a href={officialSite}>Visit official site</a>
-            {favorites.find((el)=>el.id===id) ?
+            <div className="moviecard--buttons">
+              {favorites.find((el)=>el.id===id) ?
               <button 
-              className="moviecard--favorites--remove"
+              className="favorites--remove"
               onClick={removeHandleClick}
               >
                 Remove from favorites
               </button> 
               :
               <button 
-                className="moviecard--favorites--add"
+                className="favorites--add"
                 onClick={addHandleClick}
               >
                 Add to favorites
               </button>
-            }
+              }
+            </div>
             
 
         </div>

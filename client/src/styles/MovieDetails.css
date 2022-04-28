@@ -1,0 +1,24 @@
+.movie--details--container{
+    max-width: 1020px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.movie--details{
+    display: flex;
+}
+
+.movie--details--image{
+    margin: 20px;
+}
+
+.movie--details--img{
+    height: 350px;
+    width: auto;
+    border-radius: 10px;
+}
+
+.movie--details--favorites{
+    margin: 20px 0px;
+}

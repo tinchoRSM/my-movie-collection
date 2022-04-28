@@ -16,3 +16,42 @@ code {
   text-decoration: none;
   color: "black";
 }
+
+.favorites--remove{
+  min-width: 240px;
+  height: 50px;
+  font-size: 22px;
+  border: solid 2px red;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.favorites--add{
+  min-width: 240px;
+  height: 50px;
+  font-size: 22px;
+  border: solid 2px green;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.svg{
+  height: 40px;
+  width: 40px;
+  fill: transparent;
+  stroke: #646464;
+  stroke-width: 1px;
+}
+
+.svg--clicked{
+  fill:  yellow;
+}
+
+.rating{
+  display: flex;
+}
+
+.rating--star{
+  width: auto;
+  margin: 0px 3px;
+}

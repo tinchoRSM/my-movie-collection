@@ -45,7 +45,11 @@
 }
 
 .landing--favorites--elements{
+    display: flex;
     height: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 30px 20px;
 }
 
 .landing--favorite--img{

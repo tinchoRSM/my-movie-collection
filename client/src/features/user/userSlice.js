@@ -5,7 +5,7 @@ const initialState = {
     password: "templatePassowrd",
     favorites: [],
     notes: [],
-    ratings: [],
+    ratings: [{id: "157336", rating: 5}],
 }
 
 const userSlice = createSlice({
@@ -13,15 +13,16 @@ const userSlice = createSlice({
     initialState: initialState,
     reducers: {
         addFavorites: (state,action) =>{
-            console.log(action.payload);
-            const movie = action.payload;
-            const newStateMovies = state.favorites;
-            newStateMovies.push(movie);
+            // const movie = action.payload;
+            // const newStateMovies = state.favorites;
+            // newStateMovies.push(movie);
 
-            state.favorites = newStateMovies;
+            // state.favorites = newStateMovies;
+
+            const movie = action.payload;
+            state.favorites = [movie, ...state.favorites]
         },
         removeFavorites: (state,action) =>{
-            console.log(action.payload);
             const movieId = action.payload;
             const newStateMovies = state.favorites.filter(el=>el.id!==movieId);
 
@@ -30,12 +31,17 @@ const userSlice = createSlice({
         },
         addNote: (state,action) =>{
 
+        },
+        addRating: (state,action) =>{
+            const rating = action.payload;
+
+            state.ratings = [rating, ...state.ratings]
         }
 
     }
 })
 
-export const {addFavorites,removeFavorites, addNote} = 
+export const {addFavorites,removeFavorites, addNote, addRating} = 
     userSlice.actions;
 
 export default userSlice.reducer;

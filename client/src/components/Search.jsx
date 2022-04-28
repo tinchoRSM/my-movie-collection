@@ -3,11 +3,15 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { getMoviesFromApi } from '../features/movies/moviesSlice';
-import MovieSearchCard from './MovieSearchCard';
+import { nanoid } from '@reduxjs/toolkit';
+
+
 
 import "../styles/Search.css"
 import EmptySearch from './Utility/EmptySearch';
+import MovieSearchCard from './MovieSearchCard';
 import { setSearchInput } from '../features/search/searchSlice';
+
 
 export default function Search() {
 
@@ -37,7 +41,7 @@ export default function Search() {
     }
 
     const movieElements = movies.map((movie) => {
-        return <MovieSearchCard key={movie.id} {...movie}/>; 
+        return <MovieSearchCard key={nanoid()} {...movie}/>; 
     }
         
         )

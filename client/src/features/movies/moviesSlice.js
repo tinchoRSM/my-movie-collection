@@ -4,7 +4,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     movies: [],
     search: false,
-    isLoading: true
 }
 
 const movieUrl = "http://localhost:8080/movies";
