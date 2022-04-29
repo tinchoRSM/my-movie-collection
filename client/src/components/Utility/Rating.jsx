@@ -1,42 +1,50 @@
 import React from 'react'
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addRating } from '../../features/user/userSlice';
+import { setRating } from '../../features/rating/ratingSclice';
+import { addRating, chnageRating } from '../../features/user/userSlice';
 
 import { ReactComponent as StarSVG } from "../../img/svg/star.svg";
 
 import "../../styles/index.css"
 
 export default function Rating(props) {
-    
 
     const {ratings} = useSelector((store) => store.user);
+    const rating = useSelector((store) => store.rating);
     const dispatch = useDispatch()
 
-    console.log(useSelector((store) => store.user))
+    const movieId = parseInt(props.movieId);
 
-    const userRating = ratings.find(el => el.id === props.movieId);
+    const userRating = ratings.find(el => el.id === movieId);
 
-    const [rating, setRating] = useState(0);
-
+    useEffect(() =>{
+        if(userRating){  
+            dispatch(setRating(userRating))
+        }
+    },[]);
 
     const stars = [1,2,3,4,5];
 
     function handleClick(id){
-        setRating(id);
-
-        if(userRating){
-            console.log("do nothing");
-        }
-        else {
-            dispatch(addRating({id: props.movieId,rating: id}))
-        }
-    
+        dispatch(setRating({id: movieId,rating: id}));
     }
 
+    useEffect(() =>{
+        if(userRating){
+            dispatch(chnageRating(rating))
+        }
+        else {
+            dispatch(addRating(rating))
+        }
+    },[rating]);
+
+    
+    
+
     const starsElemets = stars.map( (el)=>{
-        return <Star key={el} id={el} rating={rating} handleClick={() =>handleClick(el)}/>
+        return <Star key={el} id={el} rating={rating.rating} handleClick={() =>handleClick(el)}/>
     })
 
     return (

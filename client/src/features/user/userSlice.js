@@ -54,6 +54,14 @@ const userSlice = createSlice({
             const rating = action.payload;
 
             state.ratings = [rating, ...state.ratings]
+        },
+        chnageRating: (state,action) =>{
+            const rating = action.payload;
+            const newStateRatings = state.ratings.filter(el => el.id!==rating.id);
+            newStateRatings.push(rating);
+
+            state.ratings = newStateRatings;
+
         }
 
     },
@@ -76,7 +84,7 @@ const userSlice = createSlice({
     }
 })
 
-export const {addFavorites,removeFavorites, addNote, addRating} = 
+export const {addFavorites,removeFavorites, addNote, addRating,chnageRating} = 
     userSlice.actions;
 
 export default userSlice.reducer;

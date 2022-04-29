@@ -89,7 +89,7 @@ export default function MovieDetails() {
             </div>
             }
             <div className="movie--rating">
-                <Rating movieId={movieData.id}/>
+                <Rating movieId={moiveId}/>
             </div>
         </div>
     )
