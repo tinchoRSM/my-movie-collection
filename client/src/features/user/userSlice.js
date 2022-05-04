@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
+    _id: "",
     username: "templateUser",
     password: "templatePassowrd",
     favorites: [],
@@ -10,19 +11,57 @@ const initialState = {
     ratings: [],
 }
 
-const apiUurl = "http://localhost:8080/users";
+const apiUrl = "http://localhost:8080/users";
+const apiUrlUser = "http://localhost:8080/users/626ff1555cac152a7a75b958"
 
 export const getUserDataFromApi = createAsyncThunk(
     'user/getUserDataFromApi',async () =>{
         try {
-            const response = await fetch(apiUurl);
+            const response = await fetch(apiUrl);
             const data = await response.json();
             return data;
 
         } catch (error) {
             console.log(error)
         }
-    })
+    }
+)
+
+export const postUserDataToApi = createAsyncThunk(
+    'user/postUserDataToApi', async (state) =>{
+        try {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(state)
+            };
+
+            const response = await fetch(apiUrl,requestOptions)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
+export const updateUserDataToApi = createAsyncThunk(
+    'user/updateUserDataToApi', async (state) =>{
+        try {
+            const requestOptions = {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(state)
+            };
+
+            const response = await fetch(apiUrlUser,requestOptions)
+            console.log(response.json());
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
 
 
 
@@ -31,12 +70,6 @@ const userSlice = createSlice({
     initialState: initialState,
     reducers: {
         addFavorites: (state,action) =>{
-            // const movie = action.payload;
-            // const newStateMovies = state.favorites;
-            // newStateMovies.push(movie);
-
-            // state.favorites = newStateMovies;
-
             const movie = action.payload;
             state.favorites = [movie, ...state.favorites]
         },
@@ -71,11 +104,14 @@ const userSlice = createSlice({
         },
         [getUserDataFromApi.fulfilled]: (state,action) =>{
             console.log("Data recieved form the server!");
+                        
+
             state.username = action.payload.username;
             state.password = action.payload.password;
             state.favorites = action.payload.favorites;
             state.ratings = action.payload.ratings;
             state.notes = action.payload.notes;
+            state._id = action.payload._id;
 
         },
         [getUserDataFromApi.rejected]: (state,action) =>{
