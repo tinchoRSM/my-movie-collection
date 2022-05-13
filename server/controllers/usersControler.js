@@ -31,7 +31,7 @@ export const getUserId = (req,res) =>{
 //@route    POST /users/
 //@access    Private
 export const createUser = (req, res) => {
-    console.log("Getting User");
+    console.log("Creating User");
 
     
     console.log(req.body);
@@ -51,10 +51,14 @@ export const updateUser = async (req, res) => {
         console.log(error.message)
     }
 
-
-    const updatedUser = await User.findByIdAndUpdate(
-        {_id: req.params.userId},req.body);
-    console.log(updatedUser);
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            {_id: req.params.userId},req.body);
+    } catch (error) {
+        console.log(error.message);
+    }
+    
+    
     
     res.status(200).json({message: `User ${req.params.id} is updated`});
 }

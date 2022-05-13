@@ -15,16 +15,13 @@ function App() {
 
   useEffect(() => {
     dispatch(getUserDataFromApi());
-    console.log("GettingData");
   },[])
 
   useEffect(() =>{
     dispatch(updateUserDataToApi(userData));
-    console.log("updating Data");
   },[userData])
 
   const handleClick = () =>{
-    console.log("posting")
     dispatch(postUserDataToApi(userData));
   }
 

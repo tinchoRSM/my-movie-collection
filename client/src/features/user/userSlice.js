@@ -54,7 +54,6 @@ export const updateUserDataToApi = createAsyncThunk(
             };
 
             const response = await fetch(apiUrlUser,requestOptions)
-            console.log(response.json());
 
         } catch (error) {
             console.log(error)
