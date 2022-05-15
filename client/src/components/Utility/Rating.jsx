@@ -22,6 +22,8 @@ export default function Rating(props) {
     useEffect(() =>{
         if(userRating){  
             dispatch(setRating(userRating))
+        }else{
+            dispatch(setRating({id: movieId, rating: 0}));
         }
     },[]);
 
@@ -29,19 +31,9 @@ export default function Rating(props) {
 
     function handleClick(id){
         dispatch(setRating({id: movieId,rating: id}));
+        dispatch(addRating(rating))
+
     }
-
-    useEffect(() =>{
-        if(userRating){
-            dispatch(chnageRating(rating))
-        }
-        else {
-            dispatch(addRating(rating))
-        }
-    },[rating]);
-
-    
-    
 
     const starsElemets = stars.map( (el)=>{
         return <Star key={el} id={el} rating={rating.rating} handleClick={() =>handleClick(el)}/>

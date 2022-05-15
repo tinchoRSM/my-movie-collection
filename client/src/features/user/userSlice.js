@@ -9,6 +9,7 @@ const initialState = {
     favorites: [],
     notes: [],
     ratings: [],
+    loading: false
 }
 
 const apiUrl = "http://localhost:8080/users";
@@ -50,7 +51,14 @@ export const updateUserDataToApi = createAsyncThunk(
             const requestOptions = {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(state)
+                body: JSON.stringify({
+                    _id: state._id,
+                    username: state.username,
+                    password: state.password,
+                    favorites: state.favorites,
+                    notes: state.notes,
+                    ratings: state.rating,
+                })
             };
 
             const response = await fetch(apiUrlUser,requestOptions)
@@ -111,6 +119,8 @@ const userSlice = createSlice({
             state.ratings = action.payload.ratings;
             state.notes = action.payload.notes;
             state._id = action.payload._id;
+
+            state.loading = true;
 
         },
         [getUserDataFromApi.rejected]: (state,action) =>{
